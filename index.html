@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-DJ Pro | Intelligent Mixing Engine</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="app-container">
+        <header>
+            <h1>AI-DJ <span class="accent">PRO</span></h1>
+            <div class="master-stats">
+                <div class="stat-box">MASTER BPM: <span id="master-bpm">128</span></div>
+                <div class="stat-box">MODE: <span id="ai-status" class="status-indicator">MANUAL</span></div>
+                <button id="toggle-ai-btn" class="glow-btn">ACTIVATE AI DJ</button>
+            </div>
+        </header>
+
+        <div class="decks-container">
+            <div class="deck" id="deck-a">
+                <div class="deck-header">DECK A</div>
+                <div class="visualizer-container">
+                    <canvas id="viz-a"></canvas>
+                </div>
+                <div class="track-info">
+                    <span id="title-a">No Track Loaded</span>
+                    <span id="bpm-a">-- BPM</span>
+                    <span id="energy-a">Energy: --</span>
+                </div>
+                <div class="deck-controls">
+                    <button class="control-btn play-btn" onclick="deckA.togglePlay()">⏯</button>
+                    <button class="control-btn" onclick="deckA.triggerFx('filter')">Filter Sweep</button>
+                    <button class="control-btn" onclick="deckA.triggerFx('loop')">Loop 4</button>
+                </div>
+                <div class="fader-group">
+                    <label>Speed</label>
+                    <input type="range" min="0.8" max="1.2" step="0.01" value="1" oninput="deckA.setSpeed(this.value)">
+                </div>
+            </div>
+
+            <div class="mixer">
+                <div class="vol-meter">
+                    <div class="meter-bar" id="meter-left"></div>
+                    <div class="meter-bar" id="meter-right"></div>
+                </div>
+                <div class="crossfader-container">
+                    <label>CROSSFADER</label>
+                    <input type="range" id="crossfader" min="0" max="1" step="0.01" value="0.5">
+                </div>
+                <div class="global-controls">
+                    <label class="upload-btn">
+                        📂 Load Tracks
+                        <input type="file" id="file-upload" multiple accept="audio/*" hidden>
+                    </label>
+                </div>
+            </div>
+
+            <div class="deck" id="deck-b">
+                <div class="deck-header">DECK B</div>
+                <div class="visualizer-container">
+                    <canvas id="viz-b"></canvas>
+                </div>
+                <div class="track-info">
+                    <span id="title-b">No Track Loaded</span>
+                    <span id="bpm-b">-- BPM</span>
+                    <span id="energy-b">Energy: --</span>
+                </div>
+                <div class="deck-controls">
+                    <button class="control-btn play-btn" onclick="deckB.togglePlay()">⏯</button>
+                    <button class="control-btn" onclick="deckB.triggerFx('filter')">Filter Sweep</button>
+                    <button class="control-btn" onclick="deckB.triggerFx('loop')">Loop 4</button>
+                </div>
+                <div class="fader-group">
+                    <label>Speed</label>
+                    <input type="range" min="0.8" max="1.2" step="0.01" value="1" oninput="deckB.setSpeed(this.value)">
+                </div>
+            </div>
+        </div>
+
+        <div class="library-panel">
+            <h3>Playlist / Analysis Queue</h3>
+            <ul id="playlist">
+                </ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
